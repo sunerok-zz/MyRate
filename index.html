@@ -1,1 +1,38 @@
-<b>Hello World</b>
+<!DOCTYPE HTML>
+<html>
+<meta charset="UTF-8">
+<title>定投本息计算</title>
+<head>
+<script>
+function jisuan()
+{
+  var year = document.getElementById("year").value;
+  if(year==null || year==0){
+  	alert("请输入年限");
+  	return;
+  }
+  var money = document.getElementById("money").value;
+  if(money==null || money==0){
+  	alert("请输入定投金额");
+  	return;
+  }
+  var rate = document.getElementById("rate").value;
+  if(rate==null || rate==0){
+  	alert("请输入预期利息");
+  	return;
+  }
+  var sum = 0;
+  for(var i=0; i<=19; i++){
+  	sum = sum+money*Math.pow(1+Number(rate),Number(year)-i)
+  }
+  document.getElementById("result").value=sum.toFixed(2);
+} 
+</script>
+</head>
+<body>
+<div>投资年限：<input type="number" id="year" value="20"/></div>
+<div>定投金额：<input type="number" id="money" value="2000"/></div>
+<div>预期利息：<input type="number" id="rate" value="0.04"/></div>
+<button onclick="jisuan()">计算</button> </body>
+<div>到期本息：<input type="number" id="result" disabled="disabled"/>
+</html>
